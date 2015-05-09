@@ -467,7 +467,7 @@ GLtexture TextureHandler::loadTextureFromPNG(const char* filename, unsigned int 
 
     // get info about png
     png_uint_32 pngwidth = width, pngheight = height;
-    png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, NULL, NULL, NULL);
+    png_get_IHDR(png_ptr, info_ptr, &pngwidth, &pngheight, &bit_depth, &color_type, NULL, NULL, NULL);
     width = pngwidth;
     height = pngheight;
 
