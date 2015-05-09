@@ -8,6 +8,9 @@
 #ifndef TEXTURELOADER_H_
 #define TEXTURELOADER_H_
 
+// Wants to be included first on ubuntu for some reason "__pngconf.h__ in libpng already includes setjmp.h;" "__dont__ include it again.;"
+#include <png.h>
+
 #ifdef _WIN32
 #include <GL/glut.h>
 #endif
@@ -22,7 +25,6 @@
 #include <GL/glew.h>     // Needed for GL function calls
 #include <GLFW/glfw3.h>  // For GL functions
 #include <jpeglib.h>
-#include <png.h>
 #include <stdexcept>
 #include <string>
 #include <unordered_map>
