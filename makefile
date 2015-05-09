@@ -33,8 +33,9 @@ LFLAGS=-LTSGL/ -ltsgl \
 	-L/usr/local/lib/ \
 	-L/usr/X11/lib/ \
 	-ltsgl -lfreetype -lpng -ljpeg \
-	-lGLEW -lglfw \
-	-lX11 -lGL -lXrandr \
+	$$(pkg-config --libs glew) \
+	$$(pkg-config --libs glfw3) \
+	$$(pkg-config --libs gl) \
 	-fopenmp
 
 DEPFLAGS=-MMD -MP
