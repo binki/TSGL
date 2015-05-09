@@ -22,7 +22,7 @@ CXXFLAGS=-O3 -g3 \
 	-I/usr/include/c++/4.6/ \
 	-I/usr/include/c++/4.6/x86_64-linux-gnu/ \
 	-I/usr/lib/gcc/x86_64-linux-gnu/4.6/include/ \
-	-I/usr/local/include/freetype2/ \
+	$$(pkg-config --cflags freetype2) \
         -std=c++0x -fopenmp
 
 LFLAGS=-LTSGL/ -ltsgl \
@@ -71,7 +71,7 @@ bin/testTSGL: build/tests.o lib/libtsgl.a
 	@echo 'Building $(patsubst bin/%,%,$@)'
 	$(CC) $^ -o bin/testTSGL $(LFLAGS)
 	@touch build/build
-	
+
 bin/testInverter: build/testInverter.o lib/libtsgl.a
 	@echo 'Building $(patsubst bin/%,%,$@)'
 	$(CC) $^ -o bin/testInverter $(LFLAGS)
@@ -95,7 +95,8 @@ docs/html/index.html: ${HEADERS} Doxyfile
 
 tutorial/docs/html/index.html: ${HEADERS} TutDoxyfile
 	@echo 'Generating Doxygen'
-	@doxygen TutDoxyfile
+	mkdir -p tutorial/docs/html
+	doxygen TutDoxyfile
 
 .PHONY: all debug clean tsgl tests docs tutorial dif
 .SECONDARY: ${OBJS} build/tests.o $(OBJS:%.o=%.d)
